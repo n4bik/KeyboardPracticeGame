@@ -1,4 +1,5 @@
 let score = 0;
+let missCounter = 0;
 
 function generateRandomButton() {
   let letter = "";
@@ -11,8 +12,8 @@ function updateRandomButton() {
     document.getElementById("randomButton").innerHTML = generateRandomButton();
 };
 
-function renderLetterToPress(letterToRender) {
-    document.write("<h2 id=\"randomButton\">" + letterToRender + "</h2>");
+function renderKeyToPress(keyToPress) {
+    document.write("<h2 id=\"randomButton\">" + keyToPress + "</h2>");
 };
 
 function myEventHandler(e){
@@ -73,14 +74,16 @@ function checkKeyCode(enteredKeyCode, requiredKeyCode) {
 
 function scoreUpdate() {
     score++;
-    document.getElementById("score").innerHTML = "WYNIK: " + score;
+    document.getElementById("score").innerHTML = "TRAFIENIA: " + score + '&nbsp &nbsp &nbsp &nbsp &nbsp' + "PUDŁA: " + missCounter;
     document.getElementById("wrongButtonWarning").innerHTML = "";
 }
 
 function wrongButtonInformation() {
+    missCounter++;
+    document.getElementById("score").innerHTML = "TRAFIENIA: " + score + '&nbsp &nbsp &nbsp &nbsp &nbsp' + "PUDŁA: " + missCounter;
     document.getElementById("wrongButtonWarning").innerHTML = "<small><em>ZŁY PRZYCISK</em></small>";
 }
 
-renderLetterToPress(generateRandomButton());
+renderKeyToPress(generateRandomButton());
 
 window.addEventListener('keydown', myEventHandler, false);
