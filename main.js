@@ -1,5 +1,5 @@
-let score = 0;
 let missCounter = 0;
+let score = 0;
 
 function generateRandomButton() {
   let letter = "";
@@ -12,11 +12,16 @@ function updateRandomButton() {
     document.getElementById("randomButton").innerHTML = generateRandomButton();
 };
 
-function renderKeyToPress(keyToPress) {
-    document.write("<h2 id=\"randomButton\">" + keyToPress + "</h2>");
+function checkKeyCode(enteredKeyCode, requiredKeyCode) {
+    if (enteredKeyCode == requiredKeyCode){
+        updateScore();
+        updateRandomButton();
+    } else {
+        updateMissCounter();
+    }
 };
 
-function myEventHandler(e){
+function checkKeyCodeEventHandler(e){
     let randomButton = document.getElementById("randomButton").innerHTML.valueOf();
     let keyCode = e.keyCode;
 
@@ -63,27 +68,22 @@ function myEventHandler(e){
     }
 };
 
-function checkKeyCode(enteredKeyCode, requiredKeyCode) {
-    if (enteredKeyCode == requiredKeyCode){
-        scoreUpdate();
-        updateRandomButton();
-    } else {
-        wrongButtonInformation();
-    }
-};
-
-function scoreUpdate() {
+function updateScore() {
     score++;
     document.getElementById("score").innerHTML = "TRAFIENIA: " + score + '&nbsp &nbsp &nbsp &nbsp &nbsp' + "PUDŁA: " + missCounter;
     document.getElementById("wrongButtonWarning").innerHTML = "";
 }
 
-function wrongButtonInformation() {
+function updateMissCounter() {
     missCounter++;
     document.getElementById("score").innerHTML = "TRAFIENIA: " + score + '&nbsp &nbsp &nbsp &nbsp &nbsp' + "PUDŁA: " + missCounter;
     document.getElementById("wrongButtonWarning").innerHTML = "<small><em>ZŁY PRZYCISK</em></small>";
 }
 
+function renderKeyToPress(keyToPress) {
+    document.write("<h2 id=\"randomButton\">" + keyToPress + "</h2>");
+};
+
 renderKeyToPress(generateRandomButton());
 
-window.addEventListener('keydown', myEventHandler, false);
+window.addEventListener('keydown', checkKeyCodeEventHandler, false);
