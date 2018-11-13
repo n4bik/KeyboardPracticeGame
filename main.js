@@ -2,14 +2,26 @@ let missCounter = 0;
 let score = 0;
 
 function generateRandomButton() {
-  let letter = "";
+  let button = "";
   let possible = ["1", "2", "3", "4", "5", "E", "R", "F", "G", "SHIFT", "LEWY CTRL", "SPACJA"];
 
-  return letter += possible[(Math.floor(Math.random() * possible.length))];
+  return button += possible[(Math.floor(Math.random() * possible.length))];
 };
 
+function generateNotReapeatedValue() {
+  let newButton = generateRandomButton();
+  let currentButton = document.getElementById("randomButton").innerHTML;
+
+  while (currentButton === newButton) {
+    console.log("newButton = " + newButton);
+    newButton = generateRandomButton();
+  }
+
+  return newButton;
+}
+
 function updateRandomButton() {
-    document.getElementById("randomButton").innerHTML = generateRandomButton();
+    document.getElementById("randomButton").innerHTML = generateNotReapeatedValue();
 };
 
 function checkKeyCode(enteredKeyCode, requiredKeyCode) {
@@ -21,7 +33,7 @@ function checkKeyCode(enteredKeyCode, requiredKeyCode) {
     }
 };
 
-function checkKeyCodeEventHandler(e){
+function checkKeyCodeEventHandler(e) {
     let randomButton = document.getElementById("randomButton").innerHTML.valueOf();
     let keyCode = e.keyCode;
 
@@ -63,7 +75,6 @@ function checkKeyCodeEventHandler(e){
             checkKeyCode(keyCode, 32);
             break;
         default:
-            generateNewButton();
             break;
     }
 };
