@@ -18,7 +18,7 @@ function generateNotReapeatedValue() {
   }
 
   return newButton;
-}
+};
 
 function updateRandomButton() {
     document.getElementById("randomButton").innerHTML = generateNotReapeatedValue();
@@ -83,13 +83,13 @@ function updateScore() {
     score++;
     document.getElementById("score").innerHTML = "TRAFIENIA: " + score + '&nbsp &nbsp &nbsp &nbsp &nbsp' + "PUDŁA: " + missCounter;
     document.getElementById("wrongButtonWarning").innerHTML = "";
-}
+};
 
 function updateMissCounter() {
     missCounter++;
     document.getElementById("score").innerHTML = "TRAFIENIA: " + score + '&nbsp &nbsp &nbsp &nbsp &nbsp' + "PUDŁA: " + missCounter;
     document.getElementById("wrongButtonWarning").innerHTML = "<small><em>ZŁY PRZYCISK</em></small>";
-}
+};
 
 function renderKeyToPress(keyToPress) {
     document.write("<h2 id=\"randomButton\">" + keyToPress + "</h2>");
